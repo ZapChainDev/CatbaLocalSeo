@@ -48,7 +48,8 @@ export async function submitVenue(
     status: "draft",
   });
 
-  if (error) return { success: false, error: "Submission failed. Please try again." };
+  if (error)
+    return { success: false, error: "Submission failed. Please try again." };
   return { success: true };
 }
 
@@ -75,7 +76,8 @@ export async function submitTeam(
     status: "draft",
   });
 
-  if (error) return { success: false, error: "Submission failed. Please try again." };
+  if (error)
+    return { success: false, error: "Submission failed. Please try again." };
   return { success: true };
 }
 
@@ -100,6 +102,7 @@ export async function submitLeague(
     status: "draft",
   });
 
-  if (error) return { success: false, error: "Submission failed. Please try again." };
+  if (error)
+    return { success: false, error: "Submission failed. Please try again." };
   return { success: true };
 }

@@ -43,6 +43,9 @@ export async function getVenuesBySport(sportId: string): Promise<Venue[]> {
 
 export async function getVenueSlugs(): Promise<string[]> {
   const supabase = await createClient();
-  const { data } = await supabase.from("venues").select("slug").eq("status", "published");
+  const { data } = await supabase
+    .from("venues")
+    .select("slug")
+    .eq("status", "published");
   return (data ?? []).map((v: { slug: string }) => v.slug);
 }

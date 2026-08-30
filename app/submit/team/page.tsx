@@ -6,7 +6,10 @@ import TeamForm from "./TeamForm";
 export const metadata: Metadata = { title: "Submit a Team" };
 
 export default async function SubmitTeamPage() {
-  const [sports, leagues] = await Promise.all([getAllSports(), getAllLeagues()]);
+  const [sports, leagues] = await Promise.all([
+    getAllSports(),
+    getAllLeagues(),
+  ]);
   return (
     <div className="container mx-auto max-w-2xl px-4 py-12">
       <h1 className="mb-2 text-3xl font-bold">Submit a Team</h1>

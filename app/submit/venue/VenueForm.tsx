@@ -45,7 +45,11 @@ export default function VenueForm({ sports }: { sports: Sport[] }) {
 
       <Field label="Venue Name" name="name" required />
       <Field label="Description" name="description" as="textarea" />
-      <Field label="Address" name="address" placeholder="e.g. City Hall Compound" />
+      <Field
+        label="Address"
+        name="address"
+        placeholder="e.g. City Hall Compound"
+      />
       <Field
         label="City / Municipality"
         name="city"
@@ -102,7 +106,12 @@ function Field({
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       {as === "textarea" ? (
-        <textarea name={name} rows={3} placeholder={placeholder} className={base} />
+        <textarea
+          name={name}
+          rows={3}
+          placeholder={placeholder}
+          className={base}
+        />
       ) : (
         <input
           name={name}

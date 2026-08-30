@@ -30,6 +30,9 @@ export async function getLeagueBySlug(
 
 export async function getLeagueSlugs(): Promise<string[]> {
   const supabase = await createClient();
-  const { data } = await supabase.from("leagues").select("slug").eq("status", "published");
+  const { data } = await supabase
+    .from("leagues")
+    .select("slug")
+    .eq("status", "published");
   return (data ?? []).map((l: { slug: string }) => l.slug);
 }

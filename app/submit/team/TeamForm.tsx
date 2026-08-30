@@ -51,10 +51,16 @@ export default function TeamForm({
 
       <Field label="Team Name" name="name" required />
       <Field label="Description" name="description" as="textarea" />
-      <Field label="City / Municipality" name="city" defaultValue="Catbalogan City" />
+      <Field
+        label="City / Municipality"
+        name="city"
+        defaultValue="Catbalogan City"
+      />
 
       <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">Sport</label>
+        <label className="mb-1 block text-sm font-medium text-gray-700">
+          Sport
+        </label>
         <select
           name="sport_id"
           className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -86,7 +92,12 @@ export default function TeamForm({
       </div>
 
       <Field label="Website" name="website" type="url" placeholder="https://" />
-      <Field label="Contact Email" name="contact_email" type="email" placeholder="team@email.com" />
+      <Field
+        label="Contact Email"
+        name="contact_email"
+        type="email"
+        placeholder="team@email.com"
+      />
 
       <SubmitButton />
     </form>
@@ -118,7 +129,12 @@ function Field({
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       {as === "textarea" ? (
-        <textarea name={name} rows={3} placeholder={placeholder} className={base} />
+        <textarea
+          name={name}
+          rows={3}
+          placeholder={placeholder}
+          className={base}
+        />
       ) : (
         <input
           name={name}
