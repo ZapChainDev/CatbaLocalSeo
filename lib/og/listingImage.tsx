@@ -19,94 +19,92 @@ export function buildListingOgImage({
   badgeColor,
 }: ListingOgProps) {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        background: "linear-gradient(135deg, #1e3a5f 0%, #1a5276 100%)",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-end",
+        fontFamily: "system-ui, sans-serif",
+        padding: "60px",
+      }}
+    >
+      {/* Type badge */}
       <div
         style={{
-          background: "linear-gradient(135deg, #1e3a5f 0%, #1a5276 100%)",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "flex-end",
-          fontFamily: "system-ui, sans-serif",
-          padding: "60px",
+          fontSize: 18,
+          fontWeight: 700,
+          color: "#fff",
+          background: badgeColor,
+          padding: "6px 18px",
+          borderRadius: "999px",
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+          marginBottom: 20,
         }}
       >
-        {/* Type badge */}
+        {type}
+      </div>
+
+      {/* Listing name */}
+      <div
+        style={{
+          fontSize: name.length > 40 ? 52 : 64,
+          fontWeight: 800,
+          color: "#ffffff",
+          lineHeight: 1.15,
+          marginBottom: 20,
+        }}
+      >
+        {name}
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+        {/* Location */}
         <div
           style={{
-            fontSize: 18,
-            fontWeight: 700,
-            color: "#fff",
-            background: badgeColor,
-            padding: "6px 18px",
-            borderRadius: "999px",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            marginBottom: 20,
+            fontSize: 26,
+            color: "#93c5fd",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          {type}
+          📍 {city}, Samar
         </div>
 
-        {/* Listing name */}
-        <div
-          style={{
-            fontSize: name.length > 40 ? 52 : 64,
-            fontWeight: 800,
-            color: "#ffffff",
-            lineHeight: 1.15,
-            marginBottom: 20,
-          }}
-        >
-          {name}
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          {/* Location */}
+        {/* Sport pill */}
+        {sport && (
           <div
             style={{
-              fontSize: 26,
-              color: "#93c5fd",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
+              fontSize: 22,
+              color: "#a3e635",
+              background: "rgba(255,255,255,0.12)",
+              padding: "4px 16px",
+              borderRadius: "999px",
             }}
           >
-            📍 {city}, Samar
+            {sport}
           </div>
-
-          {/* Sport pill */}
-          {sport && (
-            <div
-              style={{
-                fontSize: 22,
-                color: "#a3e635",
-                background: "rgba(255,255,255,0.12)",
-                padding: "4px 16px",
-                borderRadius: "999px",
-              }}
-            >
-              {sport}
-            </div>
-          )}
-        </div>
-
-        {/* Footer */}
-        <div
-          style={{
-            position: "absolute",
-            top: "44px",
-            right: "60px",
-            fontSize: 18,
-            color: "#6b9fcf",
-          }}
-        >
-          Catbalogan Sports Directory
-        </div>
+        )}
       </div>
-    ),
+
+      {/* Footer */}
+      <div
+        style={{
+          position: "absolute",
+          top: "44px",
+          right: "60px",
+          fontSize: 18,
+          color: "#6b9fcf",
+        }}
+      >
+        Catbalogan Sports Directory
+      </div>
+    </div>,
     size,
   );
 }
