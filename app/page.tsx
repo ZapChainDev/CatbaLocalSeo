@@ -1,12 +1,11 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllSports } from "@/lib/queries/sports";
 import { SITE_LOCATION } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  title: `Sports Directory — ${"Catbalogan City, Samar"}`,
+  title: `Sports Business Listings — ${"Catbalogan City, Samar"}`,
   description:
-    "Find basketball courts, volleyball teams, boxing gyms, leagues, and sports events in Catbalogan City, Samar, Philippines.",
+    "Find sports businesses in Catbalogan City, Samar — basketball courts, gyms, pickleball courts, boxing clubs, and more. Browse by sport, read reviews, get contact info.",
 };
 
 export default async function HomePage() {
@@ -16,11 +15,11 @@ export default async function HomePage() {
     <div className="container mx-auto px-4 py-12">
       <section className="mb-16 text-center">
         <h1 className="mb-4 text-4xl font-bold">
-          Sports Directory — {SITE_LOCATION}
+          Sports Business Listings — {SITE_LOCATION}
         </h1>
         <p className="mx-auto max-w-2xl text-xl text-gray-600">
-          Find local basketball courts, volleyball teams, boxing gyms, leagues,
-          and sports events in Catbalogan City, Samar.
+          Find basketball courts, gyms, boxing clubs, pickleball courts, and
+          every sports business in Catbalogan City, Samar.
         </p>
       </section>
 
@@ -29,7 +28,7 @@ export default async function HomePage() {
           <h2 className="mb-6 text-2xl font-semibold">Browse by Sport</h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
             {sports.map((sport) => (
-              <Link
+              <a
                 key={sport.id}
                 href={`/sports/${sport.slug}`}
                 className="rounded-lg border border-gray-200 p-4 text-center transition-all hover:border-blue-500 hover:shadow-md"
@@ -38,39 +37,19 @@ export default async function HomePage() {
                   <span className="mb-2 block text-2xl">{sport.icon}</span>
                 )}
                 <span className="font-medium">{sport.name}</span>
-              </Link>
+              </a>
             ))}
           </div>
         </section>
       )}
 
-      <section className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-        {[
-          {
-            label: "Venues",
-            href: "/venues",
-            desc: "Find courts, fields, and arenas near you",
-          },
-          {
-            label: "Teams",
-            href: "/teams",
-            desc: "Local teams looking for players and fans",
-          },
-          {
-            label: "Leagues",
-            href: "/leagues",
-            desc: "Join a competitive or recreational league",
-          },
-        ].map(({ label, href, desc }) => (
-          <Link
-            key={href}
-            href={href}
-            className="rounded-xl bg-blue-50 p-6 transition-colors hover:bg-blue-100"
-          >
-            <h3 className="mb-2 text-xl font-semibold">{label}</h3>
-            <p className="text-gray-600">{desc}</p>
-          </Link>
-        ))}
+      <section className="text-center">
+        <a
+          href="/venues"
+          className="inline-block rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-blue-700"
+        >
+          Browse All Listings →
+        </a>
       </section>
     </div>
   );

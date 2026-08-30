@@ -3,9 +3,7 @@ import SearchBar from "@/components/SearchBar";
 
 const navLinks = [
   { label: "Sports", href: "/sports" },
-  { label: "Venues", href: "/venues" },
-  { label: "Teams", href: "/teams" },
-  { label: "Leagues", href: "/leagues" },
+  { label: "Listings", href: "/venues" },
   { label: "Submit", href: "/submit" },
 ];
 
@@ -14,7 +12,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-4">
         <Link href="/" className="shrink-0 text-xl font-bold text-blue-600">
-          Catbalogan Sports
+          Catbalogan Sports Listings
         </Link>
         <div className="hidden w-64 sm:block">
           <SearchBar placeholder="Search sports, venues..." />

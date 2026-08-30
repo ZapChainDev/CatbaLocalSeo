@@ -75,6 +75,12 @@ export default function VenueForm({ sports }: { sports: Sport[] }) {
 
       <Field label="Phone Number" name="phone" placeholder="+63 55 XXX XXXX" />
       <Field label="Website" name="website" type="url" placeholder="https://" />
+      <Field
+        label="Facebook Page"
+        name="facebook_url"
+        type="url"
+        placeholder="https://facebook.com/yourpage"
+      />
 
       <SubmitButton />
     </form>

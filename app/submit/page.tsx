@@ -4,27 +4,15 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Submit a Listing",
   description:
-    "Add your sports venue, team, or league to the Catbalogan City Sports Directory.",
+    "Add your sports business to the Catbalogan City Sports Listings directory.",
 };
 
 const types = [
   {
-    label: "Venue",
+    label: "Sports Business / Venue",
     href: "/submit/venue",
     icon: "🏟️",
-    desc: "Courts, gyms, fields, pools, and sports facilities",
-  },
-  {
-    label: "Team",
-    href: "/submit/team",
-    icon: "👥",
-    desc: "Local sports teams looking for players or recognition",
-  },
-  {
-    label: "League",
-    href: "/submit/league",
-    icon: "🏆",
-    desc: "Competitive and recreational leagues and tournaments",
+    desc: "Courts, gyms, boxing clubs, pools, pickleball courts, and any sports business",
   },
 ];
 

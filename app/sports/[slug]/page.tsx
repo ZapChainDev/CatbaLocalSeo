@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllSports, getSportBySlug } from "@/lib/queries/sports";
 import { getVenuesBySport } from "@/lib/queries/venues";
-import { getTeamsBySport } from "@/lib/queries/teams";
 import { buildListingMetadata } from "@/lib/metadata";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ListingCard from "@/components/ListingCard";
@@ -31,10 +30,7 @@ export default async function SportPage({ params }: Props) {
   const sport = await getSportBySlug(slug);
   if (!sport) notFound();
 
-  const [venues, teams] = await Promise.all([
-    getVenuesBySport(sport.id),
-    getTeamsBySport(sport.id),
-  ]);
+  const venues = await getVenuesBySport(sport.id);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -64,25 +60,6 @@ export default async function SportPage({ params }: Props) {
                 description={venue.description}
                 location={[venue.city, venue.state].filter(Boolean).join(", ")}
                 imageUrl={venue.image_url}
-              />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {teams.length > 0 && (
-        <section>
-          <h2 className="mb-6 text-2xl font-semibold">{sport.name} Teams</h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {teams.map((team) => (
-              <ListingCard
-                key={team.id}
-                name={team.name}
-                slug={team.slug}
-                section="teams"
-                description={team.description}
-                location={[team.city, team.state].filter(Boolean).join(", ")}
-                imageUrl={team.image_url}
               />
             ))}
           </div>

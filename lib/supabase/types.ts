@@ -21,51 +21,13 @@ export interface Venue {
   lng: number | null;
   phone: string | null;
   website: string | null;
+  facebook_url: string | null;
   sport_id: string | null;
   image_url: string | null;
   status: string;
   created_at: string;
 }
 
-export interface Team {
-  id: string;
-  name: string;
-  slug: string;
-  description: string | null;
-  city: string;
-  state: string;
-  sport_id: string | null;
-  league_id: string | null;
-  image_url: string | null;
-  website: string | null;
-  contact_email: string | null;
-  status: string;
-  created_at: string;
-}
-
-export interface League {
-  id: string;
-  name: string;
-  slug: string;
-  description: string | null;
-  sport_id: string | null;
-  city: string | null;
-  state: string | null;
-  website: string | null;
-  status: string;
-  created_at: string;
-}
-
-// Joined types returned by relational queries
 export interface VenueWithSport extends Venue {
-  sports: Pick<Sport, "id" | "name" | "slug"> | null;
-}
-
-export interface TeamWithRelations extends Team {
-  sports: Pick<Sport, "id" | "name" | "slug"> | null;
-  leagues: Pick<League, "id" | "name" | "slug"> | null;
-}
-
-export interface LeagueWithSport extends League {
   sports: Pick<Sport, "id" | "name" | "slug"> | null;
 }

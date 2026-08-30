@@ -44,6 +44,7 @@ export async function submitVenue(
     state: "Samar",
     phone: (formData.get("phone") as string)?.trim() || null,
     website: (formData.get("website") as string)?.trim() || null,
+    facebook_url: (formData.get("facebook_url") as string)?.trim() || null,
     sport_id: (formData.get("sport_id") as string) || null,
     status: "draft",
   });

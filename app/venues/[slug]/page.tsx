@@ -131,6 +131,21 @@ export default async function VenuePage({ params }: Props) {
             </dd>
           </div>
         )}
+        {venue.facebook_url && (
+          <div>
+            <dt className="text-sm font-medium text-gray-500">Facebook</dt>
+            <dd className="mt-1">
+              <a
+                href={venue.facebook_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                {venue.facebook_url}
+              </a>
+            </dd>
+          </div>
+        )}
       </dl>
     </div>
   );

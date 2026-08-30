@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import ListingCard from "@/components/ListingCard";
-import type { Venue, Team, League, Sport } from "@/lib/supabase/types";
+import type { Venue, Sport } from "@/lib/supabase/types";
 
 type Props = { searchParams: Promise<{ q?: string }> };
 
@@ -11,8 +11,8 @@ export async function generateMetadata({
   const { q } = await searchParams;
   return {
     title: q ? `Search: "${q}"` : "Search",
-    description: `Search sports venues, teams, leagues, and sports in Catbalogan City, Samar.`,
-    robots: { index: false }, // search results pages should not be indexed
+    description: `Search sports businesses and venues in Catbalogan City, Samar.`,
+    robots: { index: false },
   };
 }
 
@@ -25,7 +25,7 @@ export default async function SearchPage({ searchParams }: Props) {
       <div className="container mx-auto px-4 py-12 text-center">
         <h1 className="mb-4 text-3xl font-bold">Search</h1>
         <p className="text-gray-500">
-          Enter a search term to find sports, venues, teams, and leagues.
+          Enter a search term to find sports businesses in Catbalogan City.
         </p>
       </div>
     );
@@ -34,23 +34,17 @@ export default async function SearchPage({ searchParams }: Props) {
   const supabase = await createClient();
   const like = `%${query}%`;
 
-  const [
-    { data: venues },
-    { data: teams },
-    { data: leagues },
-    { data: sports },
-  ] = await Promise.all([
-    supabase.from("venues").select("*").ilike("name", like).limit(6),
-    supabase.from("teams").select("*").ilike("name", like).limit(6),
-    supabase.from("leagues").select("*").ilike("name", like).limit(6),
+  const [{ data: venues }, { data: sports }] = await Promise.all([
+    supabase
+      .from("venues")
+      .select("*")
+      .eq("status", "published")
+      .ilike("name", like)
+      .limit(12),
     supabase.from("sports").select("*").ilike("name", like).limit(6),
   ]);
 
-  const total =
-    (venues?.length ?? 0) +
-    (teams?.length ?? 0) +
-    (leagues?.length ?? 0) +
-    (sports?.length ?? 0);
+  const total = (venues?.length ?? 0) + (sports?.length ?? 0);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -88,7 +82,7 @@ export default async function SearchPage({ searchParams }: Props) {
       )}
 
       {(venues?.length ?? 0) > 0 && (
-        <Section title="Venues">
+        <Section title="Listings">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {(venues as Venue[]).map((venue) => (
               <ListingCard
@@ -99,43 +93,6 @@ export default async function SearchPage({ searchParams }: Props) {
                 description={venue.description}
                 location={[venue.city, venue.state].filter(Boolean).join(", ")}
                 imageUrl={venue.image_url}
-              />
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {(teams?.length ?? 0) > 0 && (
-        <Section title="Teams">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {(teams as Team[]).map((team) => (
-              <ListingCard
-                key={team.id}
-                name={team.name}
-                slug={team.slug}
-                section="teams"
-                description={team.description}
-                location={[team.city, team.state].filter(Boolean).join(", ")}
-                imageUrl={team.image_url}
-              />
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {(leagues?.length ?? 0) > 0 && (
-        <Section title="Leagues">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {(leagues as League[]).map((league) => (
-              <ListingCard
-                key={league.id}
-                name={league.name}
-                slug={league.slug}
-                section="leagues"
-                description={league.description}
-                location={[league.city, league.state]
-                  .filter(Boolean)
-                  .join(", ")}
               />
             ))}
           </div>

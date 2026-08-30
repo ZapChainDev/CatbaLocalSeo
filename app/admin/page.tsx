@@ -1,20 +1,11 @@
-import {
-  getDraftVenues,
-  getDraftTeams,
-  getDraftLeagues,
-} from "@/lib/queries/admin";
+import { getDraftVenues } from "@/lib/queries/admin";
 import { approveSubmission, rejectSubmission } from "@/lib/actions/admin";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
-  const [venues, teams, leagues] = await Promise.all([
-    getDraftVenues(),
-    getDraftTeams(),
-    getDraftLeagues(),
-  ]);
-
-  const total = venues.length + teams.length + leagues.length;
+  const venues = await getDraftVenues();
+  const total = venues.length;
 
   return (
     <div>
@@ -33,7 +24,7 @@ export default async function AdminPage() {
         </div>
       )}
 
-      <Section title="Venues" count={venues.length}>
+      <Section title="Listings" count={venues.length}>
         {venues.map((v) => (
           <SubmissionCard
             key={v.id}
@@ -42,39 +33,10 @@ export default async function AdminPage() {
             description={v.description}
             phone={v.phone}
             website={v.website}
+            facebook={v.facebook_url}
             createdAt={v.created_at}
             approveAction={approveSubmission.bind(null, "venues", v.id)}
             rejectAction={rejectSubmission.bind(null, "venues", v.id)}
-          />
-        ))}
-      </Section>
-
-      <Section title="Teams" count={teams.length}>
-        {teams.map((t) => (
-          <SubmissionCard
-            key={t.id}
-            title={t.name}
-            meta={[t.city, t.state].filter(Boolean).join(", ")}
-            description={t.description}
-            website={t.website}
-            createdAt={t.created_at}
-            approveAction={approveSubmission.bind(null, "teams", t.id)}
-            rejectAction={rejectSubmission.bind(null, "teams", t.id)}
-          />
-        ))}
-      </Section>
-
-      <Section title="Leagues" count={leagues.length}>
-        {leagues.map((l) => (
-          <SubmissionCard
-            key={l.id}
-            title={l.name}
-            meta={[l.city, l.state].filter(Boolean).join(", ")}
-            description={l.description}
-            website={l.website}
-            createdAt={l.created_at}
-            approveAction={approveSubmission.bind(null, "leagues", l.id)}
-            rejectAction={rejectSubmission.bind(null, "leagues", l.id)}
           />
         ))}
       </Section>
@@ -111,6 +73,7 @@ function SubmissionCard({
   description,
   phone,
   website,
+  facebook,
   createdAt,
   approveAction,
   rejectAction,
@@ -120,6 +83,7 @@ function SubmissionCard({
   description: string | null;
   phone?: string | null;
   website?: string | null;
+  facebook?: string | null;
   createdAt: string;
   approveAction: () => Promise<void>;
   rejectAction: () => Promise<void>;
@@ -137,6 +101,7 @@ function SubmissionCard({
         <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400">
           {phone && <span>📞 {phone}</span>}
           {website && <span>🔗 {website}</span>}
+          {facebook && <span>👤 {facebook}</span>}
           <span>
             Submitted {new Date(createdAt).toLocaleDateString("en-PH")}
           </span>
