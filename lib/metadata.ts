@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-export const SITE_NAME = "Catbalogan Sports Directory";
+export const SITE_NAME = "Catbalogan Sports Listings";
 export const SITE_LOCATION = "Catbalogan City, Samar";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://catba-local-seo.vercel.app";
 const SITE_DESCRIPTION =
-  "The #1 sports directory for Catbalogan City, Samar. Find local basketball courts, volleyball teams, boxing gyms, leagues, and more.";
+  "Find sports businesses in Catbalogan City, Samar — courts, gyms, boxing clubs, pickleball courts, swimming pools, and more. Browse by sport or location.";
 
 export const defaultMetadata: Metadata = {
   title: {
@@ -15,14 +15,17 @@ export const defaultMetadata: Metadata = {
   description: SITE_DESCRIPTION,
   metadataBase: new URL(SITE_URL),
   keywords: [
-    "sports Catbalogan City",
-    "Catbalogan sports",
-    "Samar sports directory",
-    "basketball Catbalogan",
-    "volleyball Catbalogan",
-    "sports venue Catbalogan Samar",
-    "sports teams Catbalogan",
+    "sports business Catbalogan City",
+    "Catbalogan sports listings",
+    "basketball court Catbalogan",
     "gym Catbalogan City",
+    "boxing gym Catbalogan",
+    "pickleball court Catbalogan",
+    "sports venue Catbalogan Samar",
+    "volleyball court Catbalogan",
+    "swimming pool Catbalogan",
+    "sports facility Catbalogan",
+    "Samar sports",
     "Eastern Visayas sports",
   ],
   openGraph: {

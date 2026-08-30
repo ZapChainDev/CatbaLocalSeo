@@ -37,12 +37,20 @@ export default async function VenuePage({ params }: Props) {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "SportsActivityLocation",
+          "@type": ["LocalBusiness", "SportsActivityLocation"],
           name: venue.name,
           description: venue.description ?? undefined,
           url: venue.website ?? undefined,
           telephone: venue.phone ?? undefined,
           image: venue.image_url ?? undefined,
+          ...(venue.facebook_url || venue.website
+            ? {
+                sameAs: [
+                  venue.facebook_url,
+                  venue.website,
+                ].filter(Boolean),
+              }
+            : {}),
           address: {
             "@type": "PostalAddress",
             streetAddress: venue.address ?? undefined,

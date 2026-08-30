@@ -12,10 +12,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: SITE_URL, priority: 1 },
-    { url: `${SITE_URL}/sports`, priority: 0.9 },
-    { url: `${SITE_URL}/venues`, priority: 0.9 },
-    { url: `${SITE_URL}/submit`, priority: 0.6 },
+    { url: SITE_URL, priority: 1, changeFrequency: "weekly" },
+    { url: `${SITE_URL}/sports`, priority: 0.9, changeFrequency: "weekly" },
+    { url: `${SITE_URL}/venues`, priority: 0.9, changeFrequency: "daily" },
+    { url: `${SITE_URL}/submit`, priority: 0.6, changeFrequency: "monthly" },
   ];
 
   return [

@@ -24,7 +24,7 @@ export default function RootLayout({
             "@type": "WebSite",
             name: SITE_NAME,
             url: SITE_URL,
-            description: `The #1 sports directory for ${SITE_LOCATION}.`,
+            description: `Find sports businesses in ${SITE_LOCATION} — courts, gyms, boxing clubs, and more.`,
             potentialAction: {
               "@type": "SearchAction",
               target: `${SITE_URL}/search?q={search_term_string}`,
