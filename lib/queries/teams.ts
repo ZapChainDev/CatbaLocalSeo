@@ -6,6 +6,7 @@ export async function getAllTeams(): Promise<Team[]> {
   const { data, error } = await supabase
     .from("teams")
     .select("*")
+    .eq("status", "published")
     .order("name");
 
   if (error) throw new Error(error.message);
@@ -20,6 +21,7 @@ export async function getTeamBySlug(
     .from("teams")
     .select("*, sports(id, name, slug), leagues(id, name, slug)")
     .eq("slug", slug)
+    .eq("status", "published")
     .single();
 
   if (error) return null;
@@ -32,6 +34,7 @@ export async function getTeamsBySport(sportId: string): Promise<Team[]> {
     .from("teams")
     .select("*")
     .eq("sport_id", sportId)
+    .eq("status", "published")
     .order("name");
 
   if (error) throw new Error(error.message);
@@ -44,6 +47,7 @@ export async function getTeamsByLeague(leagueId: string): Promise<Team[]> {
     .from("teams")
     .select("*")
     .eq("league_id", leagueId)
+    .eq("status", "published")
     .order("name");
 
   if (error) throw new Error(error.message);
@@ -52,6 +56,6 @@ export async function getTeamsByLeague(leagueId: string): Promise<Team[]> {
 
 export async function getTeamSlugs(): Promise<string[]> {
   const supabase = await createClient();
-  const { data } = await supabase.from("teams").select("slug");
+  const { data } = await supabase.from("teams").select("slug").eq("status", "published");
   return (data ?? []).map((t: { slug: string }) => t.slug);
 }

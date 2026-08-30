@@ -6,6 +6,7 @@ export async function getAllLeagues(): Promise<League[]> {
   const { data, error } = await supabase
     .from("leagues")
     .select("*")
+    .eq("status", "published")
     .order("name");
 
   if (error) throw new Error(error.message);
@@ -20,6 +21,7 @@ export async function getLeagueBySlug(
     .from("leagues")
     .select("*, sports(id, name, slug)")
     .eq("slug", slug)
+    .eq("status", "published")
     .single();
 
   if (error) return null;
@@ -28,6 +30,6 @@ export async function getLeagueBySlug(
 
 export async function getLeagueSlugs(): Promise<string[]> {
   const supabase = await createClient();
-  const { data } = await supabase.from("leagues").select("slug");
+  const { data } = await supabase.from("leagues").select("slug").eq("status", "published");
   return (data ?? []).map((l: { slug: string }) => l.slug);
 }

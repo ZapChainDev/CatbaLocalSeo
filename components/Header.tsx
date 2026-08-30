@@ -6,6 +6,7 @@ const navLinks = [
   { label: "Venues", href: "/venues" },
   { label: "Teams", href: "/teams" },
   { label: "Leagues", href: "/leagues" },
+  { label: "Submit", href: "/submit" },
 ];
 
 export default function Header() {

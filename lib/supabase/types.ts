@@ -4,6 +4,7 @@ export interface Sport {
   slug: string;
   description: string | null;
   icon: string | null;
+  status: string;
   created_at: string;
 }
 
@@ -22,6 +23,7 @@ export interface Venue {
   website: string | null;
   sport_id: string | null;
   image_url: string | null;
+  status: string;
   created_at: string;
 }
 
@@ -37,6 +39,7 @@ export interface Team {
   image_url: string | null;
   website: string | null;
   contact_email: string | null;
+  status: string;
   created_at: string;
 }
 
@@ -49,6 +52,7 @@ export interface League {
   city: string | null;
   state: string | null;
   website: string | null;
+  status: string;
   created_at: string;
 }
 
