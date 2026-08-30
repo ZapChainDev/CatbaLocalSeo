@@ -1,0 +1,18 @@
+import Link from "next/link";
+
+export default function NotFound() {
+  return (
+    <div className="container mx-auto px-4 py-24 text-center">
+      <h1 className="mb-4 text-4xl font-bold">404 — Not Found</h1>
+      <p className="mb-8 text-gray-600">
+        We couldn&apos;t find the listing you were looking for.
+      </p>
+      <Link
+        href="/"
+        className="inline-block rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
+      >
+        Back to Home
+      </Link>
+    </div>
+  );
+}
