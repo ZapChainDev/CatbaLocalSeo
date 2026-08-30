@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = defaultMetadata;
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://catbalogansports.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://catba-local-seo.vercel.app";
 
 export default function RootLayout({
   children,

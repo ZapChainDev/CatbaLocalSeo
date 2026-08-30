@@ -5,7 +5,7 @@ import { getTeamSlugs } from "@/lib/queries/teams";
 import { getLeagueSlugs } from "@/lib/queries/leagues";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://localsportsdirectory.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://catba-local-seo.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [sports, venueSlugs, teamSlugs, leagueSlugs] = await Promise.all([
