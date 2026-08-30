@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTeamBySlug, getTeamSlugs } from "@/lib/queries/teams";
@@ -63,11 +64,16 @@ export default async function TeamPage({ params }: Props) {
       />
 
       {team.image_url && (
-        <img
-          src={team.image_url}
-          alt={team.name}
-          className="mb-8 h-64 w-full rounded-xl object-cover"
-        />
+        <div className="relative mb-8 h-64 w-full overflow-hidden rounded-xl">
+          <Image
+            src={team.image_url}
+            alt={`${team.name} in ${team.city}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 896px) 100vw, 896px"
+            priority
+          />
+        </div>
       )}
 
       <div className="mb-6 flex flex-wrap items-start gap-3">

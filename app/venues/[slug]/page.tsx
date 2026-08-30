@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getVenueBySlug, getVenueSlugs } from "@/lib/queries/venues";
 import { buildListingMetadata } from "@/lib/metadata";
@@ -66,11 +67,16 @@ export default async function VenuePage({ params }: Props) {
       />
 
       {venue.image_url && (
-        <img
-          src={venue.image_url}
-          alt={venue.name}
-          className="mb-8 h-64 w-full rounded-xl object-cover"
-        />
+        <div className="relative mb-8 h-64 w-full overflow-hidden rounded-xl">
+          <Image
+            src={venue.image_url}
+            alt={`${venue.name} in ${venue.city}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 896px) 100vw, 896px"
+            priority
+          />
+        </div>
       )}
 
       <div className="mb-6 flex flex-wrap items-start gap-3">

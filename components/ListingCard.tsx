@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Badge from "@/components/ui/Badge";
 
@@ -26,11 +27,13 @@ export default function ListingCard({
       className="group block overflow-hidden rounded-xl border border-gray-200 transition-all hover:border-blue-300 hover:shadow-md"
     >
       {imageUrl && (
-        <div className="h-40 overflow-hidden bg-gray-100">
-          <img
+        <div className="relative h-40 overflow-hidden bg-gray-100">
+          <Image
             src={imageUrl}
-            alt={name}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            alt={`${name}${location ? ` in ${location}` : ""}`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>
       )}

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import LoginForm from "./LoginForm";
 
-export const metadata: Metadata = { title: "Admin Login", robots: { index: false } };
+export const metadata: Metadata = {
+  title: "Admin Login",
+  robots: { index: false },
+};
 
 export default function AdminLoginPage() {
   return (

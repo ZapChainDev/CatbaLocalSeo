@@ -3,7 +3,11 @@ import { getAllSports } from "@/lib/queries/sports";
 import { getAllLeagues } from "@/lib/queries/leagues";
 import TeamForm from "./TeamForm";
 
-export const metadata: Metadata = { title: "Submit a Team" };
+export const metadata: Metadata = {
+  title: "Submit a Team",
+  description:
+    "List your local sports team in the Catbalogan City Sports Directory. Free submission, reviewed within 24 hours.",
+};
 
 export default async function SubmitTeamPage() {
   const [sports, leagues] = await Promise.all([

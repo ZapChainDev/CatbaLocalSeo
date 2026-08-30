@@ -1,4 +1,8 @@
-import { getDraftVenues, getDraftTeams, getDraftLeagues } from "@/lib/queries/admin";
+import {
+  getDraftVenues,
+  getDraftTeams,
+  getDraftLeagues,
+} from "@/lib/queries/admin";
 import { approveSubmission, rejectSubmission } from "@/lib/actions/admin";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +19,9 @@ export default async function AdminPage() {
   return (
     <div>
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Pending Submissions</h1>
+        <h1 className="text-2xl font-bold text-gray-900">
+          Pending Submissions
+        </h1>
         <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-medium text-orange-700">
           {total} awaiting review
         </span>
@@ -124,12 +130,16 @@ function SubmissionCard({
         <p className="font-semibold text-gray-900">{title}</p>
         <p className="text-sm text-gray-500">{meta}</p>
         {description && (
-          <p className="mt-1 text-sm text-gray-600 line-clamp-2">{description}</p>
+          <p className="mt-1 text-sm text-gray-600 line-clamp-2">
+            {description}
+          </p>
         )}
         <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400">
           {phone && <span>📞 {phone}</span>}
           {website && <span>🔗 {website}</span>}
-          <span>Submitted {new Date(createdAt).toLocaleDateString("en-PH")}</span>
+          <span>
+            Submitted {new Date(createdAt).toLocaleDateString("en-PH")}
+          </span>
         </div>
       </div>
       <div className="flex shrink-0 gap-2">

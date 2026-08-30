@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { getAllSports } from "@/lib/queries/sports";
 import VenueForm from "./VenueForm";
 
-export const metadata: Metadata = { title: "Submit a Venue" };
+export const metadata: Metadata = {
+  title: "Submit a Venue",
+  description:
+    "List your sports venue, court, gym, or field in the Catbalogan City Sports Directory. Free submission, reviewed within 24 hours.",
+};
 
 export default async function SubmitVenuePage() {
   const sports = await getAllSports();

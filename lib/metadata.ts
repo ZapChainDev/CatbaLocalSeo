@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const SITE_NAME = "Catbalogan Sports Directory";
 export const SITE_LOCATION = "Catbalogan City, Samar";
-const SITE_URL =
+export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://catba-local-seo.vercel.app";
 const SITE_DESCRIPTION =
   "The #1 sports directory for Catbalogan City, Samar. Find local basketball courts, volleyball teams, boxing gyms, leagues, and more.";
